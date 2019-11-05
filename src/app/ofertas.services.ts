@@ -8,18 +8,25 @@ export class OfertasService
 {
     constructor(private http:  HttpClient){}
 
-    public getOfertas(): Promise<Oferta[]>
-    {
-       return this.http.get('http://localhost:3000/ofertas?destaque=true')
-        .toPromise()
-        .then((resposta: any)=> resposta.json())
-    }
+    public getOfertas(): Promise<Oferta[]> {
+        return this.http
+          .get("http://localhost:3000/ofertas?destaque=true")
+          .toPromise()
+          .then((resposta: any) => resposta);
+      }
 
     public getOfertasPorCategoria(categoria: string) : Promise<Oferta[]>
     {
         return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
             .toPromise()
-            .then((resposta: any) => resposta.json)
+            .then((resposta: any) => resposta)
+    }
+
+    public getOfertasPorId(id: number): Promise<Oferta>
+    {
+        return this.http.get(`http://localhost:3000/ofertas?categoria=id${id}`)
+            .toPromise()
+            .then((resposta: any) => resposta) 
     }
    
 }
